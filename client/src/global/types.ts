@@ -1,9 +1,9 @@
-export type UserData = {
+export interface UserData {
     email: string;
     password: string;
 }
 
-export type QueryData = {
+export interface QueryData {
     search: string;
     user: string;
 }
