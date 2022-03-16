@@ -34,14 +34,14 @@ const Register = ({email='', password=''}: UserData ) => {
                         type='text'
                         name='email'
                         onChange={e => setUserEmail(e.target.value)}
-                        value={email}
+                        value={userEmail}
                     />
                     <label htmlFor='password'>Password</label>
                     <input
                         type='password'
                         name='password'
                         onChange={e => setUserPassword(e.target.value)}
-                        value={password}
+                        value={userPassword}
                     />
                 </div>
             <button type='submit'>Register</button>

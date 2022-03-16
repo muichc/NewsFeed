@@ -1,40 +1,27 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import NewsModel from '../models/news'
+import { Header } from '../components/Header'
 
-interface Article {
-    author:string;
-}
+
 
 const Home = () => {
 
-    const [news, setNews] = useState([])
-
-    const fetchNews = async () => {
-        const newsArray = await NewsModel.all()
-        console.log("news array", newsArray.response.articles)
-        setNews(newsArray.response.articles)
+    const currentUser = localStorage.getItem('user')
+    let loggedIn;
+    if(currentUser) {
+        loggedIn = true;
+    } else {
+        loggedIn = false;
     }
-    let newsList : any[] = []
-    if (news) {
-        newsList = news.map( (article : Article) => {
-            return  (
-            <p>{article.author}</p>
-            )
-        })
-    }
-
-    useEffect(()=> {
-        fetchNews()
-    },[])
 
     return (
         <div>
-            <p>Hello world</p>
+            { loggedIn &&
+                <Header />
+            }
             <Link to={'/login'}>Login</Link>
-            <div>
-                {newsList}
-            </div>
+            <Link to={'/register'}>Register</Link>
+
         </div>
     )
 }

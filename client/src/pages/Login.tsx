@@ -15,8 +15,10 @@ const Login = ({email='', password=''}: UserData) => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const response = await AuthModel.login({email:userEmail, password:userPassword})
+        const response  = await AuthModel.login({email:userEmail, password:userPassword})
+        console.log("response", response)
         if (response.status === 200) {
+            localStorage.setItem('user', userEmail)
             navigate("/")
         } else {
             setError("Something went wrong, please try again");
@@ -35,14 +37,14 @@ const Login = ({email='', password=''}: UserData) => {
                         type='text'
                         name='email'
                         onChange={e => setUserEmail(e.target.value)}
-                        value={email}
+                        value={userEmail}
                     />
                     <label htmlFor='password'>Password</label>
                     <input
                         type='password'
                         name='password'
                         onChange={e => setUserPassword(e.target.value)}
-                        value={password}
+                        value={userPassword}
                     />
                 </div>
             <button type='submit'>Login</button>
