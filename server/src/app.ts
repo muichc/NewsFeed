@@ -14,10 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/news', routes.news)
-
-
-
-
+app.use ('/auth', routes.auth)
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

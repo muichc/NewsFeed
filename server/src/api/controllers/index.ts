@@ -1,3 +1,4 @@
 module.exports = {
-    news: require('./news')
+    news: require('./news'),
+    auth: require('./auth')
 }

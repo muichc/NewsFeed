@@ -1,3 +1,4 @@
 export const routes = {
-    news: require('./news')
+    news: require('./news'),
+    auth: require('./auth')
 }
