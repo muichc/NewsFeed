@@ -1,0 +1,14 @@
+.header {
+    display:flex;
+    justify-content:center;
+}
+
+.title {
+    padding: 0 50px 0 50px;
+}
+
+#menu-button{
+    position:absolute;
+    left: 1rem;
+    top: 1rem;
+}

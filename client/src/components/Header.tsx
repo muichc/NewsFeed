@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './Header.css'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -42,8 +43,8 @@ const Header = () => {
 
     if (loggedIn) {
         return (
-            <div>
-                <h1>Fake News Times</h1>
+            <div className="header">
+                <h1 className="title">The Pog Chronicles</h1>
                 <IconButton
                     id="menu-button"
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -51,7 +52,7 @@ const Header = () => {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
                 >
-                    <MenuIcon />
+                    <MenuIcon fontSize={'large'} />
                 </IconButton>
                 <Menu
                     id="basic-menu"
@@ -70,7 +71,7 @@ const Header = () => {
         )
     } else {
         return (
-            <div>
+            <div className="header">
                 <h1>Fake News Times</h1>
                 <a href='/login'>Login</a>
                 <IconButton
