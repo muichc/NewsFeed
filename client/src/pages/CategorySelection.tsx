@@ -3,6 +3,7 @@ import { useNavigate }from 'react-router-dom'
 import CategoryModel from '../models/category'
 import CategoryMenu from '../components/CategoryMenu'
 import { CategoryData } from '../global/types'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const CategorySelection = ()=> {
 
@@ -48,7 +49,7 @@ const CategorySelection = ()=> {
                     <CategoryMenu {...{type: 'country', categories: categoryArray, selected: selectedCategories, setCategories: setSelectedCategories}} />
                 </div>
                 
-            : <p>Loading categories...</p>
+            : <CircularProgress />
             }
             <button onClick={handleSave}>Save categories</button>
             <button onClick={handleSkip}>Skip</button>

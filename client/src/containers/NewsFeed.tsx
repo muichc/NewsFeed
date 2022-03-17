@@ -3,10 +3,9 @@ import './NewsFeed.css'
 import NewsModel from '../models/news'
 import { News } from '../components/News'
 import { NewsData } from '../global/types'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const NewsFeed = () => {
     const [news, setNews] = useState([])
@@ -39,7 +38,7 @@ const NewsFeed = () => {
                         {newsList}
                     </>): 
                     <>
-                        Loading...
+                        <CircularProgress />
                     </>    
                 }
             </Grid>
