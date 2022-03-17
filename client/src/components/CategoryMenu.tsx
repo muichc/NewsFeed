@@ -35,7 +35,6 @@ const CategoryMenu = (props: CategorySelectionProps) => {
             target: { value },
             } = event;
             props.setCategories(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
             );
     };
