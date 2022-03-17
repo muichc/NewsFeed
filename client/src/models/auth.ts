@@ -1,4 +1,5 @@
 import { UserData } from '../global/types'
+import { UserPasswordData } from '../global/types'
 
 const URL : string = process.env.SERVER_API_URL || 'http://localhost:8000'
 
@@ -26,8 +27,17 @@ class AuthModel {
     }
     static verify = (data: UserData) => {
         return fetch(`${URL}/auth/verify`, {
+            body: JSON.stringify(data)
+        }).then((response) => response.json())
+    }
+    static changePassword = (data: UserPasswordData) => {
+        console.log("client data", data)
+        const jsonData = JSON.stringify(data)
+        console.log("stringified data", jsonData)
+        return fetch(`${URL}/auth/changepw`, {
+            method: 'PUT',
             headers: {
-                authorization: `Bearer ${ localStorage.uid }`
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         }).then((response) => response.json())
