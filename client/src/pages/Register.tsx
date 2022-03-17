@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate }from 'react-router-dom'
-import { UserData } from '../global/types'
 import AuthModel from '../models/auth'
 
 
-const Register = ({email='', password=''}: UserData ) => {
+const Register = () => {
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [error, setError] = useState("")
@@ -15,7 +14,8 @@ const Register = ({email='', password=''}: UserData ) => {
 
         const response = await AuthModel.register({email:userEmail, password:userPassword})
         if (response.status === 200) {
-            navigate("/login")
+            localStorage.setItem('user', userEmail)
+            navigate("/category")
         } else {
             setError("Something went wrong, please try again");
             console.log(response)

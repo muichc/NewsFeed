@@ -12,6 +12,20 @@ export interface QueryData {
     user: string;
 }
 
+export interface CategoryData{
+    id: number,
+    name: string,
+    type: string,
+    abbreviation: string
+}
+
+export interface CategorySelectionProps  {
+    type:string,
+    categories: CategoryData[],
+    selected: string[],
+    setCategories: React.Dispatch<React.SetStateAction<string[]>>
+}
+
 
 export interface NewsData {
     source: {

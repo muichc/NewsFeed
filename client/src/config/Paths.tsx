@@ -5,7 +5,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import UserProfile from '../pages/UserProfile'
 import ChangePassword from '../pages/ChangePassword'
-
+import CategorySelection from '../pages/CategorySelection'
 
 const Paths = () => {
     
@@ -16,7 +16,7 @@ const Paths = () => {
             <Route path='/register' element={ <Register />} />
             <Route path='/profile' element={ <UserProfile />} />
             <Route path='/changepw' element={<ChangePassword />}/>
-            
+            <Route path='/category' element={<CategorySelection />}/>
         </Routes>
     )
 }
