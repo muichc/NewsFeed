@@ -1,4 +1,5 @@
 module.exports = {
     news: require('./news'),
-    auth: require('./auth')
+    auth: require('./auth'),
+    category: require('./category')
 }

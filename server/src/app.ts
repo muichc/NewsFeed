@@ -15,6 +15,7 @@ app.use(cors())
 
 app.use('/news', routes.news)
 app.use ('/auth', routes.auth)
+app.use('/category', routes.category)
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

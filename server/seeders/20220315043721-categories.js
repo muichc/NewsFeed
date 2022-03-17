@@ -25,37 +25,42 @@ module.exports = {
     const categories = await queryInterface.bulkInsert('categories', [
       {
         name:"health",
-        type:"cat",
+        type:"categories",
         createdAt: new Date(),
         updatedAt: new Date()
       }, 
       {
         name:"business",
-        type:"cat",
+        type:"categories",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name:"jp",
+        name:"japan",
         type:"country",
+        abbreviation: 'jp',
         createdAt: new Date(),
         updatedAt: new Date()
+        
       },
       {
-        name:"us",
+        name:"united states",
         type:"country",
+        abbreviation: 'us',
         createdAt: new Date(),
         updatedAt: new Date()
+        
       },
       {
         name:"technology",
-        type:"cat",
+        type:"categories",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name:"au",
+        name:"australia",
         type:"country",
+        abbreviation: 'au',
         createdAt: new Date(),
         updatedAt: new Date()
       },
