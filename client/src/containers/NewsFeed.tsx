@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import './NewsFeed.css'
 import NewsModel from '../models/news'
 import { News } from '../components/News'
 import { NewsData } from '../global/types'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 
 const NewsFeed = () => {
     const [news, setNews] = useState([])
@@ -16,7 +19,9 @@ const NewsFeed = () => {
     if (news) {
         newsList = news.map((article : NewsData,index) => {
             return  (
-            <ListItem key={index}><News {...article}/></ListItem>
+                <Grid item>
+                    <News {...article} key={index}/>
+                </Grid>
             )
         })
     }
@@ -27,18 +32,19 @@ const NewsFeed = () => {
 
 
     return (
-        <>
-            {news ? 
-                <List>
-                    {newsList}
-                </List> 
-                : 
-                <>
-                    Loading...
-                </>    
-        }
-            
-        </>
+        <Box className={'news-container'}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs:1, sm:2, md:3 }} justifyContent="center">
+                {news ? (
+                    <>
+                        {newsList}
+                    </>): 
+                    <>
+                        Loading...
+                    </>    
+                }
+            </Grid>
+        </Box>
+        
         
     )
 }

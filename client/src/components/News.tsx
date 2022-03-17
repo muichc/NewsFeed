@@ -8,6 +8,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const News = (newsArticle: NewsData) => {
+
+    const handleSave = () => {
+        
+    }
     return (
         <Card sx={{ maxWidth: 350 }}>
             <CardMedia
@@ -25,6 +29,7 @@ const News = (newsArticle: NewsData) => {
                 </Typography>
             </CardContent>
             <CardActions>
+                <Button size="small" onClick={handleSave}>Save</Button>
                 <Button size="small" href={`${newsArticle.url}`}>See full article</Button>
             </CardActions>
         </Card>
