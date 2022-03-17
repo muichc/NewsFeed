@@ -1,22 +1,22 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import { UserData } from '../global/types'
+import UserProfile from '../pages/UserProfile'
+import ChangePassword from '../pages/ChangePassword'
 
-interface Props extends UserData {
-    children?: React.ReactNode;
-}
 
-const Paths : FunctionComponent<Props> = (props) => {
+const Paths = () => {
     
     return (
         <Routes>
             <Route path='/' element={ <Home /> } />
-            <Route path='/login' element={ <Login {...props} />} />
-            <Route path='/register' element={ <Register {...props} />} />
+            <Route path='/login' element={ <Login />} />
+            <Route path='/register' element={ <Register />} />
+            <Route path='/profile' element={ <UserProfile />} />
+            <Route path='/changepw' element={<ChangePassword />}/>
+            
         </Routes>
     )
 }

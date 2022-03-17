@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthModel from '../models/auth'
-import { UserData } from '../global/types'
 
 
 
-const Login = ({email='', password=''}: UserData) => {
+const Login = () => {
 
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
@@ -47,7 +46,7 @@ const Login = ({email='', password=''}: UserData) => {
                         value={userPassword}
                     />
                 </div>
-            <button type='submit'>Login</button>
+                <button type='submit'>Login</button>
             </form>
         </div>
     )

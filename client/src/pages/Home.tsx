@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
 import { Header } from '../components/Header'
+import { NewsFeed } from '../containers/NewsFeed'
 
 
 
@@ -16,12 +16,8 @@ const Home = () => {
 
     return (
         <div>
-            { loggedIn &&
-                <Header />
-            }
-            <Link to={'/login'}>Login</Link>
-            <Link to={'/register'}>Register</Link>
-
+            <Header />
+            <NewsFeed />
         </div>
     )
 }
