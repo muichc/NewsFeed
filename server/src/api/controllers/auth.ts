@@ -38,7 +38,6 @@ const login = async ( req : Request, res : Response ) : Promise<void> => {
 }
 
 const changePassword = async ( req : Request, res : Response ) : Promise<void> => {
-    console.log(req.body)
     const user = await db.user.findOne({
         where: {email: req.body.email}
     })

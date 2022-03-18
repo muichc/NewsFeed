@@ -5,7 +5,6 @@ const all = async (req: Request, res: Response) : Promise<void> => {
     const categories = await db.category.findAll({
         attributes: {exclude: ['createdAt', 'updatedAt']}
     })
-    console.log(categories)
     res.status(200).json({status: 200, categories})
 }
 
