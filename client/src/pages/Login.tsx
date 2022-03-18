@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthModel from '../models/auth'
-
+import { userState, userCategoriesState } from '../recoil/atoms'
+import { useSetRecoilState } from 'recoil';
 
 
 const Login = () => {
-
+    const setUser = useSetRecoilState(userState)
+    const setCategories = useSetRecoilState(userCategoriesState)
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [error, setError] = useState("")
@@ -13,11 +15,18 @@ const Login = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         const response  = await AuthModel.login({email:userEmail, password:userPassword})
-        console.log("response", response)
         if (response.status === 200) {
             localStorage.setItem('user', userEmail)
+            setUser(response.user)
+            const categoryArray = []
+            console.log(response.categories)
+            if (response.categories.length > 0 ){
+                for (let category of response.categories) {
+                    categoryArray.push(category.name)
+                }
+            }
+            setCategories(categoryArray)
             navigate("/")
         } else {
             setError("Something went wrong, please try again");

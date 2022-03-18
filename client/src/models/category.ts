@@ -10,12 +10,12 @@ class CategoryModel {
                 "Content-Type": "application/json"
             },
         }).then((response) => {
-            console.log(response)
             return response.json()
         }
             )
     }
     static saveCategories = (categories: string[]) => {
+        console.log("requesting server to save categories now...")
         return fetch(`${URL}/category/save`, {
             method: 'POST',
             headers: {
@@ -23,10 +23,20 @@ class CategoryModel {
             },
             body: JSON.stringify({categories, user:localStorage.getItem('user')})
         }).then((response) => {
-            console.log(response)
             return response.json()
         })
-    } 
+    }
+    static deleteCategories = (categories: string[]) => {
+        return fetch(`${URL}/category/delete`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({categories, user:localStorage.getItem('user')})
+        }).then((response) => {
+            return response.json()
+        })
+    }
 }
 
 export default CategoryModel

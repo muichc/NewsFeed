@@ -29,7 +29,6 @@ const getStyles =(name: string, categoryName: string[], theme: Theme) => {
 
 const CategoryMenu = (props: CategorySelectionProps) => {
     const theme = useTheme();
-    
     const handleChange = (event: SelectChangeEvent<typeof props.selected>) => {
         const {
             target: { value },
@@ -52,11 +51,12 @@ const CategoryMenu = (props: CategorySelectionProps) => {
                 MenuProps={MenuProps}
                 >
                 {props.categories.map((category) => {
+                    let processedCategoryName = ''
                     if (category.type === props.type) {
                         if (category.type === 'categories') {
-                            category.name = capitalize(category.name)
+                            processedCategoryName= capitalize(category.name)
                         } else {
-                            category.name = category.name.toUpperCase()
+                            processedCategoryName = category.name.toUpperCase()
                         }
                         return(
                             <MenuItem
@@ -64,7 +64,7 @@ const CategoryMenu = (props: CategorySelectionProps) => {
                                 value={category.name}
                                 style={getStyles(category.name, props.selected, theme)}
                             >
-                            {category.name}
+                            {processedCategoryName}
                             </MenuItem>
                         )
                     }
