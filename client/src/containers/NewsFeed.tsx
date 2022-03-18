@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import './NewsFeed.css'
-import NewsModel from '../models/news'
 import { News } from '../components/News'
-import { NewsData } from '../global/types'
+import { NewsData, CurrentCategoryProps  } from '../global/types'
+import { useFetchNews } from '../hooks/useFetchNews'
+import './NewsFeed.css'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const NewsFeed = () => {
-    const [news, setNews] = useState([])
-    const fetchNews = async () => {
-        const newsArray = await NewsModel.all()
-        console.log("news array", newsArray.response.articles)
-        setNews(newsArray.response.articles)
+const NewsFeed = (props: CurrentCategoryProps) => {
+    let fetchData : CurrentCategoryProps = {category: props.category}
+    if (props.userCategories) {
+        fetchData = {category: props.category, userCategories: props.userCategories}
     }
-    let newsList : any[] = []
-    if (news) {
-        newsList = news.map((article : NewsData,index) => {
-            return  (
-                <Grid item key={index}>
-                    <News {...article} />
-                </Grid>
-            )
-        })
-    }
+    const [news, fetchNews] = useFetchNews(fetchData)
+    const [newsList, setNewsList] = useState<React.ReactElement[]>([])
+
+    const createNewsList = () => {
+        let newsArray : React.ReactElement[] = [];
+        if (news) {
+            newsArray = news.map((article : NewsData, index) => {
+                return  (
+                    <Grid item key={index}>
+                        <News {...article} />
+                    </Grid>
+                )
+            })
+        }
+        return newsArray
+    }  
 
     useEffect(()=> {
-        fetchNews()
+        fetchNews(fetchData)
     },[])
+
+    useEffect(() => {
+        const result : React.ReactElement[] = createNewsList()
+        setNewsList(result)
+    }, [news])
 
 
     return (
@@ -36,8 +45,8 @@ const NewsFeed = () => {
                 {news ? (
                     <>
                         {newsList}
-                    </>): 
-                    <>
+                    </>
+                ):  <>
                         <CircularProgress />
                     </>    
                 }

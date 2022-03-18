@@ -1,5 +1,6 @@
 import { QueryData } from '../global/types'
 
+
 const URL : string = process.env.SERVER_API_URL || 'http://localhost:8000'
 
 
@@ -10,11 +11,32 @@ class NewsModel {
                 "Content-Type": "application/json"
             },
         }).then((response) => {
-            console.log(response)
             return response.json()
-        }
-            )
+        })
     } 
+    static allByCategory = (data: string) => {
+        return fetch(`${URL}/news/byCategory`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((response) => {
+            return response.json()
+        })
+    }
+
+    static allByUser = (data:string[]) => {
+        return fetch(`${URL}/news/byUser`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((response) => {
+            return response.json()
+        })
+    }
+
     static search = (data: QueryData) => {
         return fetch(`${URL}/news/search/`, {
             headers: {

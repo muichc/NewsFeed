@@ -17,11 +17,12 @@ const Paths = () => {
             <Route path='/' element={ <Home /> } />
             <Route path='/login' element={ <Login />} />
             <Route path='/register' element={ <Register />} />
+            <Route path='/category' element={<CategorySelection />}/>
             {loggedIn && 
                 <>
                     <Route path='/profile' element={ <UserProfile />} />
                     <Route path='/changepw' element={<ChangePassword />}/>
-                    <Route path='/category' element={<CategorySelection />}/>
+                    
                 </>
             }
             

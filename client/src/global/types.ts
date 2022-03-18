@@ -40,3 +40,8 @@ export interface NewsData {
     publishedAt: string,
     content: string
 }
+
+export interface CurrentCategoryProps {
+    category: string,
+    userCategories?: string[]
+}

@@ -5,16 +5,25 @@ import { CategoryData } from '../global/types'
 import CategoryModel from '../models/category'
 import { Header } from '../components/Header'
 import { NewsFeed } from '../containers/NewsFeed'
+import { useRecoilValue } from 'recoil'
+import { userState, userCategoriesState } from '../recoil/atoms'
+import { CurrentCategoryProps } from '../global/types'
 
 
 
 const Home = () => {
-
     const [categoryArray, setCategoryArray] = useState<CategoryData[]>([])
     const [error, setError] = useState('')
     const setAllCategories = useSetRecoilState(allCategoriesState)
+    const loggedIn = useRecoilValue(userState)
+    const userCategories = useRecoilValue(userCategoriesState)
+    
+    const [currentCategory, setCurrentCategory] = useState<string>(loggedIn? 'user': 'all')
 
-
+    let categoryProp : CurrentCategoryProps = {category: currentCategory}
+    if (loggedIn) {
+        categoryProp = {category: currentCategory, userCategories}
+    }
     const fetchCategories = async () => {
         const response = await CategoryModel.all()
         if (response.status === 200) {
@@ -26,7 +35,6 @@ const Home = () => {
 
     useEffect(() => {
         fetchCategories()
-        
     }, [])
 
     useEffect(() => {
@@ -40,7 +48,8 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <NewsFeed />
+            <hr></hr>
+            <NewsFeed {...categoryProp} />
         </div>
     )
 }
