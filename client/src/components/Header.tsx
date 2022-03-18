@@ -35,6 +35,11 @@ const Header = () => {
         navigate('/register')
     }
 
+    const handleLogin = () => {
+        setAnchor(null);
+        navigate('/login')
+    }
+
     const handleLogOut = () => {
         localStorage.removeItem('user')
         setAnchor(null);
@@ -72,8 +77,7 @@ const Header = () => {
     } else {
         return (
             <div className="header">
-                <h1>Fake News Times</h1>
-                <a href='/login'>Login</a>
+                <h1>The Pog Chronicles</h1>
                 <IconButton
                     id="menu-button"
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -93,6 +97,7 @@ const Header = () => {
                     }}
                 >
                     <MenuItem onClick={handleRegister}>Register</MenuItem>
+                    <MenuItem onClick={handleLogin}>Login</MenuItem>
                 </Menu>
             </div>
         )

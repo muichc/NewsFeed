@@ -18,8 +18,8 @@ const NewsFeed = () => {
     if (news) {
         newsList = news.map((article : NewsData,index) => {
             return  (
-                <Grid item>
-                    <News {...article} key={index}/>
+                <Grid item key={index}>
+                    <News {...article} />
                 </Grid>
             )
         })
