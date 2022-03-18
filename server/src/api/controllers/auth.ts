@@ -23,7 +23,6 @@ const login = async ( req : Request, res : Response ) : Promise<void> => {
         where: {email: req.body.email},
         include: [db.category]
     })
-    console.log(user.categories)
     console.log("logging in")
     if (!user){
         res.status(400).json({ message: "User does not exist"})
