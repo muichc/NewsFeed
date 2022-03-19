@@ -9,16 +9,13 @@ import Typography from '@mui/material/Typography';
 
 const News = (newsArticle: NewsData) => {
 
-    const handleSave = () => {
-        
-    }
     return (
         <Card sx={{ maxWidth: 350 }}>
             <CardMedia
                 component="img"
                 height="200"
                 image={`${newsArticle.urlToImage}`}
-                alt="green iguana"
+                alt="news article image"
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -29,8 +26,7 @@ const News = (newsArticle: NewsData) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={handleSave}>Save</Button>
-                <Button size="small" href={`${newsArticle.url}`}>See full article</Button>
+                <Button size="small" href={`${newsArticle.url}`} target="_blank" rel="noopener noreferrer" > See full article </Button>
             </CardActions>
         </Card>
     )
