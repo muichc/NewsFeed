@@ -25,11 +25,6 @@ class AuthModel {
         }).then((response) => {
             return response.json()})
     }
-    static verify = (data: UserData) => {
-        return fetch(`${URL}/auth/verify`, {
-            body: JSON.stringify(data)
-        }).then((response) => response.json())
-    }
     static changePassword = (data: UserPasswordData) => {
         console.log("client data", data)
         const jsonData = JSON.stringify(data)

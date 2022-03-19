@@ -7,11 +7,6 @@ export interface UserPasswordData extends UserData{
     newPassword:string
 }
 
-export interface QueryData {
-    search: string;
-    user: string;
-}
-
 export interface CategoryData{
     id: number,
     name: string,
