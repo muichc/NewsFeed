@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate }from 'react-router-dom'
-import CategoryModel from '../models/category'
-import CategoryMenu from '../components/categories/CategoryMenu'
+import { CategoryModel } from '../models/category'
 import { CategoryData } from '../global/types'
-import CircularProgress from '@mui/material/CircularProgress'
 import { Header } from '../components/header/Header'
+import { CategoryMenu } from '../components/categories/CategoryMenu'
+import CircularProgress from '@mui/material/CircularProgress'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 const CategorySelection = ()=> {
 
@@ -44,21 +47,25 @@ const CategorySelection = ()=> {
         <div>
             <Header />
             <hr className='header-divide-line'></hr>
-            <p>Please select categories of news you are interested in!</p>
-            { error? <p>{error}</p> : ''}
-            { categoryArray.length > 0 ?
-                <div>
-                    <CategoryMenu {...{type: 'categories', categories: categoryArray, selected: selectedCategories, setCategories: setSelectedCategories}} />
-                    <CategoryMenu {...{type: 'country', categories: categoryArray, selected: selectedCategories, setCategories: setSelectedCategories}} />
-                </div>
-                
-            : <CircularProgress />
-            }
-            <button onClick={handleSave}>Save categories</button>
-            <button onClick={handleSkip}>Skip</button>
+            <Stack className='category-stack' spacing={2}>
+                <Typography variant="subtitle1">Please select categories of news you are interested in!</Typography>
+                { error? <Typography variant="overline">{error}</Typography> : ''}
+                { categoryArray.length > 0 ?
+                    <div>
+                        <CategoryMenu {...{type: 'categories', categories: categoryArray, selected: selectedCategories, setCategories: setSelectedCategories}} />
+                        <CategoryMenu {...{type: 'country', categories: categoryArray, selected: selectedCategories, setCategories: setSelectedCategories}} />
+                    </div>
+                    
+                : <CircularProgress />
+                }
+                <Button onClick={handleSave} variant="outlined" className='button'>Save categories</Button>
+                <Button onClick={handleSkip} variant="outlined" className='button'>Skip</Button>
+            </Stack>
+            
+            
         </div>
         
     )
 }
 
-export default CategorySelection
+export { CategorySelection }

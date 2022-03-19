@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { NewsData } from '../global/types'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions';
@@ -15,7 +15,7 @@ const News = (newsArticle: NewsData) => {
                 component="img"
                 height="200"
                 image={`${newsArticle.urlToImage}`}
-                alt="news article image"
+                alt=""
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

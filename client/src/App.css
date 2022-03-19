@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .header {
@@ -23,7 +26,8 @@
 }
 
 .news-container {
-  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .header-divide-line {
@@ -32,10 +36,15 @@
 }
 
 .form{
-  display: flex;
+  display:flex;
   justify-content:center;
-  margin: 30px;
 }
+@media only screen and (min-width:481px) {
+  .form{
+    margin: 30px;
+  }
+}
+
 
 .category-stack{
   margin: 50px;
@@ -43,14 +52,23 @@
   align-items:center;
 }
 
-.section-heading{
-  text-decoration: underline;
+@media only screen and (min-width: 481px) {
+  .button{
+    max-width: 20%;
+  }
 }
 
-.button{
-  max-width: 20%;
-}
 
 .authentication-stack{
   justify-content:center;
+  margin: .2rem;
+}
+@media only screen and (min-width:481px) {
+  .authentication-stack{
+    margin:50px;
+  }
+}
+
+.back-button{
+  right:35%;
 }

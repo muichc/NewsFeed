@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { userCategoriesState, allCategoriesState } from '../recoil/atoms'
-import CategoryMenu from '../components/categories/CategoryMenu'
-import CategoryModel from '../models/category'
+import { CategoryMenu } from '../components/categories/CategoryMenu'
+import { CategoryModel } from '../models/category'
 import { Header } from '../components/header/Header'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
@@ -72,14 +72,14 @@ const UserProfile = () => {
             <Header />
             <hr className='header-divide-line'></hr>
             <Stack spacing={2} className='category-stack'>
-                <Typography variant="overline" className='section-heading' sx={{ fontSize:'20px' }}> Your account information: </Typography>
-                <Typography variant="body2">Email: {userEmail}</Typography>
+                <Typography variant="overline" className='section-heading' sx={{ fontSize:'1.5rem' }}> Your account information: </Typography>
+                <Typography variant="body2" sx={{ fontSize: '1rem'}}>Email: {userEmail}</Typography>
                 <Button onClick={handleClick} variant="outlined" className='button'>Change password</Button>
             </Stack>
             
             <Stack spacing={2} className='category-stack'>
-                <Typography variant="overline" className='section-heading' sx={{ fontSize:'20px' }}> You have selected the following categories you are interested in: </Typography>
-                <Typography variant="caption" sx={{ fontSize: '15px'}}>Please select or deselect categories through the dropdown menu to see the news that you want!</Typography>
+                <Typography variant="overline" className='section-heading' sx={{ fontSize:'1.5rem' }}> You have selected the following categories you are interested in: </Typography>
+                <Typography variant="caption" sx={{ fontSize: '1rem'}}>Please select or deselect categories through the dropdown menu to see the news that you want!</Typography>
                 { error? <Typography variant="subtitle1">{error}</Typography> : ''}
                 <CategoryMenu {...{ type: 'categories', categories: allCategories, selected: selectedCategories, setCategories: setSelectedCategories}}/>
                 <CategoryMenu {...{ type: 'country', categories: allCategories, selected: selectedCategories, setCategories: setSelectedCategories}}/>
@@ -89,4 +89,4 @@ const UserProfile = () => {
     )
 }
 
-export default UserProfile
+export { UserProfile }
