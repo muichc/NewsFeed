@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import AuthModel from '../models/auth'
+import { Header } from '../components/header/Header'
+import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+
 
 const ChangePassword = () => {
     
@@ -21,26 +28,42 @@ const ChangePassword = () => {
 
 
     return (
-        <div>
+        <Box>
+            <Header />
+            <hr className='header-divide-line'></hr>
             {message}
-            <form onSubmit={handleSubmit} >
-                <label htmlFor='old-password'>Old Password</label>
-                <input
-                    type='password'
-                    name='old-password'
-                    onChange={e => setOldPassword(e.target.value)}
-                    value={oldPassword}
-                />
-                <label htmlFor='new-password'>New Password</label>
-                <input
-                    type='password'
-                    name='new-password'
-                    onChange={e => setNewPassword(e.target.value)}
-                    value={newPassword}
-                />
-                <button type='submit'> Change password </button>
+            <form onSubmit={handleSubmit} className='form' >
+                <Stack spacing={2}>
+                    <>
+                        <TextField
+                            required
+                            id="old-password-input"
+                            label="Current Password"
+                            type="password"
+                            variant="standard"
+                            name='old-password'
+                            onChange={e => setOldPassword(e.target.value)}
+                            value={oldPassword}
+                        />
+                    </>
+                    <>
+                        <TextField
+                            required
+                            id="new-password-input"
+                            label="New Password"
+                            type="password"
+                            variant="standard"
+                            name='new-password'
+                            onChange={e => setNewPassword(e.target.value)}
+                            value={newPassword}
+                            className='password-input'
+                        />
+                    </>
+                    <Button type='submit' variant="outlined"> Save password </Button>
+                </Stack>
             </form>
-        </div>
+        
+        </Box>
     )
 }
 

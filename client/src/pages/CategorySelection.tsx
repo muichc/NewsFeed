@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate }from 'react-router-dom'
 import CategoryModel from '../models/category'
-import CategoryMenu from '../components/CategoryMenu'
+import CategoryMenu from '../components/categories/CategoryMenu'
 import { CategoryData } from '../global/types'
 import CircularProgress from '@mui/material/CircularProgress'
+import { Header } from '../components/header/Header'
 
 const CategorySelection = ()=> {
 
@@ -27,12 +28,12 @@ const CategorySelection = ()=> {
         event.preventDefault()
         const response = await CategoryModel.saveCategories(selectedCategories)
         console.log(response)
-        navigate('/login')
+        navigate('/auth')
     }
 
     const handleSkip = async(event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        navigate('/login')
+        navigate('/auth')
     }
 
     useEffect(() => {
@@ -41,6 +42,8 @@ const CategorySelection = ()=> {
     
     return (
         <div>
+            <Header />
+            <hr className='header-divide-line'></hr>
             <p>Please select categories of news you are interested in!</p>
             { error? <p>{error}</p> : ''}
             { categoryArray.length > 0 ?
