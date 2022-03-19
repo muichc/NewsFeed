@@ -4,7 +4,7 @@ import { CategoryData } from '../global/types'
 
 export const userState = atom({
     key:'userState',
-    default: null
+    default: null || '' as string
 })
 
 export const userCategoriesState = atom({

@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { allCategoriesState } from '../recoil/atoms'
 import { CategoryData } from '../global/types'
 import CategoryModel from '../models/category'
-import { Header } from '../components/Header'
+import { Header } from '../components/header/Header'
 import { NewsFeed } from '../containers/NewsFeed'
 import { useRecoilValue } from 'recoil'
 import { userState, userCategoriesState } from '../recoil/atoms'
@@ -48,7 +48,7 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <hr></hr>
+            <hr className='header-divide-line'></hr>
             <NewsFeed {...categoryProp} />
         </div>
     )
