@@ -77,19 +77,19 @@ module.exports = {
       const users = await queryInterface.bulkInsert('users', [
         {
           email:"example@gmail.com",
-          password: bcrypt.hashSync('hello world', 12),
+          password: bcrypt.hashSync('hello', 12),
           createdAt: new Date(),
           updatedAt: new Date()
         }, 
         {
           email:"bot@gmail.com",
-          password: bcrypt.hashSync('hello world', 12),
+          password: bcrypt.hashSync('hello', 12),
           createdAt: new Date(),
           updatedAt: new Date()
         }, 
         {
           email:"chatterbox@gmail.com",
-          password: bcrypt.hashSync('hello world', 12),
+          password: bcrypt.hashSync('hello', 12),
           createdAt: new Date(),
           updatedAt: new Date()
         }, 
