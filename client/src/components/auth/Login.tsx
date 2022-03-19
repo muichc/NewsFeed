@@ -21,7 +21,6 @@ const Login = () => {
         event.preventDefault();
         const response  = await AuthModel.login({email:userEmail, password:userPassword})
         if (response.status === 200) {
-            localStorage.setItem('user', userEmail)
             setUser(response.user)
             const categoryArray = []
             if (response.categories.length > 0 ){

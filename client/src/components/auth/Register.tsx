@@ -18,7 +18,6 @@ const Register = () => {
 
         const response = await AuthModel.register({email:userEmail, password:userPassword})
         if (response.status === 200) {
-            localStorage.setItem('user', userEmail)
             navigate("/category")
         } else {
             setError("Something went wrong, please try again");

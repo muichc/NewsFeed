@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { loggedInState } from '../../recoil/selectors'
+import { userState, userCategoriesState } from '../../recoil/atoms'
 import { Title } from './Title'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,9 +12,10 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 const Header = () => {
 
-    let loggedIn =localStorage.getItem('user')
+    let loggedIn =useRecoilValue(loggedInState)
     const navigate = useNavigate();
-
+    const setUser = useSetRecoilState(userState)
+    const setUserCategories = useSetRecoilState(userCategoriesState)
     const [anchor, setAnchor] = useState<null | HTMLElement>(null);
     const open = Boolean(anchor)
     const handleClick = (event : React.MouseEvent<HTMLButtonElement>) => {
@@ -33,8 +37,9 @@ const Header = () => {
     }
 
     const handleLogOut = () => {
-        localStorage.removeItem('user')
         setAnchor(null);
+        setUser(null)
+        setUserCategories([])
         navigate('/')
     }
 
