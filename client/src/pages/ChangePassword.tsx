@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import AuthModel from '../models/auth'
+import { AuthModel } from '../models/auth'
 import { Header } from '../components/header/Header'
+import { BackButton } from '../components/BackButton'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 
 
@@ -32,6 +32,7 @@ const ChangePassword = () => {
             <Header />
             <hr className='header-divide-line'></hr>
             {message}
+            <BackButton />
             <form onSubmit={handleSubmit} className='form' >
                 <Stack spacing={2}>
                     <>
@@ -67,4 +68,4 @@ const ChangePassword = () => {
     )
 }
 
-export default ChangePassword
+export { ChangePassword }
