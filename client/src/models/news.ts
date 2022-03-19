@@ -65,4 +65,4 @@ class NewsModel {
     }
 }
 
-export default NewsModel
+export { NewsModel }

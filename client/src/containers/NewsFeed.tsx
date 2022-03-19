@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 
+
 const NewsFeed = (props: CurrentCategoryProps) => {
     let fetchData : CurrentCategoryProps = {category: props.category}
     if (props.userCategories) {
@@ -51,7 +52,7 @@ const NewsFeed = (props: CurrentCategoryProps) => {
                 }
             </Grid>
         </Box>
-        
+
         
     )
 }

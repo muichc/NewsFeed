@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil';
 import { userState, userCategoriesState } from '../../recoil/atoms'
-import AuthModel from '../../models/auth'
+import { AuthModel } from '../../models/auth'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
@@ -75,4 +75,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export { Login }

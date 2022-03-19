@@ -8,4 +8,4 @@ const CategoryButton = () => {
     )
 }
 
-export default CategoryButton
+export { CategoryButton }

@@ -2,15 +2,16 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useRecoilValue } from 'recoil';
 import { loggedInState } from '../recoil/selectors'
-import Home from '../pages/Home'
-import UserProfile from '../pages/UserProfile'
-import ChangePassword from '../pages/ChangePassword'
-import CategorySelection from '../pages/CategorySelection'
-import Authentication from '../pages/Authentication'
+import { Home } from '../pages/Home'
+import { UserProfile } from '../pages/UserProfile'
+import { ChangePassword } from '../pages/ChangePassword'
+import { CategorySelection } from '../pages/CategorySelection'
+import { Authentication } from '../pages/Authentication'
 
 const Paths = () => {
 
     const loggedIn = useRecoilValue(loggedInState)
+
     return (
         <Routes>
             <Route path='/' element={ <Home /> } />
@@ -28,4 +29,4 @@ const Paths = () => {
     )
 }
 
-export default Paths
+export { Paths }

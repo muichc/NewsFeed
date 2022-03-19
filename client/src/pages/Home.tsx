@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useSetRecoilState } from 'recoil';
 import { allCategoriesState } from '../recoil/atoms'
 import { CategoryData } from '../global/types'
-import CategoryModel from '../models/category'
+import { CategoryModel } from '../models/category'
 import { Header } from '../components/header/Header'
 import { NewsFeed } from '../containers/NewsFeed'
 import { useRecoilValue } from 'recoil'
@@ -54,4 +54,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export { Home }

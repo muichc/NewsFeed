@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import NewsModel from '../models/news'
+import { NewsModel } from '../models/news'
 import { NewsData } from '../global/types'
 import { CurrentCategoryProps } from '../global/types'
 

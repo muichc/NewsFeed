@@ -39,4 +39,4 @@ class CategoryModel {
     }
 }
 
-export default CategoryModel
+export { CategoryModel }

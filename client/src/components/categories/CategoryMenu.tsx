@@ -75,4 +75,4 @@ const CategoryMenu = (props: CategorySelectionProps) => {
     )
 }
 
-export default CategoryMenu
+export { CategoryMenu }

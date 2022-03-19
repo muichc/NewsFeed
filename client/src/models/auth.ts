@@ -44,4 +44,4 @@ class AuthModel {
     }
 }
 
-export default AuthModel
+export { AuthModel }
