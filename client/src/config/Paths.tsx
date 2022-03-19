@@ -3,11 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import { useRecoilValue } from 'recoil';
 import { loggedInState } from '../recoil/selectors'
 import Home from '../pages/Home'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
 import UserProfile from '../pages/UserProfile'
 import ChangePassword from '../pages/ChangePassword'
 import CategorySelection from '../pages/CategorySelection'
+import Authentication from '../pages/Authentication'
 
 const Paths = () => {
 
@@ -15,8 +14,7 @@ const Paths = () => {
     return (
         <Routes>
             <Route path='/' element={ <Home /> } />
-            <Route path='/login' element={ <Login />} />
-            <Route path='/register' element={ <Register />} />
+            <Route path='/auth' element={ <Authentication />} />
             <Route path='/category' element={<CategorySelection />}/>
             {loggedIn && 
                 <>
