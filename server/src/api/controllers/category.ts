@@ -2,29 +2,31 @@ import type {Request, Response} from 'express';
 const db = require('../../../models')
 
 const all = async (req: Request, res: Response) : Promise<void> => {
-    const categories = await db.category.findAll({
-        attributes: {exclude: ['createdAt', 'updatedAt']}
-    })
-    res.status(200).json({status: 200, categories})
+    try {
+        const categories = await db.category.findAll({
+            attributes: {exclude: ['createdAt', 'updatedAt']}
+        })
+        res.status(200).json({status: 200, categories})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: `Server error: ${error}`})
+    }
+    
 }
 
 const save = async (req: Request, res: Response) : Promise<void> => {
-    console.log("user info is", req.body.user)
-    const user = await db.user.findOne({
-        where: { email: req.body.user},
-        include: [db.category]
-    })
-    console.log("request categories", req.body.categories)
     try {
-        for (let item of req.body.categories) {
+        const user = await db.user.findOne({
+            where: { email: req.body.data.user},
+            include: [db.category]
+        })
+        for (let item of req.body.data.categories) {
             const category = await db.category.findOne({
                 where: { name:item.toLowerCase() },
                 include: [db.user]
             })
-            console.log("the category is", category, "name should be", item)
-            const relationInfo = await user.addCategory(category)
-            console.log("category associated")
-            console.log(relationInfo)
+            await user.addCategory(category)
+            console.log(category, "associated")
         }
         res.status(200).json({status: 200, message: "Success, the categories have been saved"})
     } catch(error) {
@@ -36,12 +38,12 @@ const save = async (req: Request, res: Response) : Promise<void> => {
 }
 
 const deleteCategories = async (req: Request, res: Response) : Promise<void> => {
-    const user = await db.user.findOne({
-        where: { email: req.body.user},
-        include: [db.category]
-    })
     try {
-        for (let item of req.body.categories) {
+        const user = await db.user.findOne({
+            where: { email: req.body.data.user},
+            include: [db.category]
+        })
+        for (let item of req.body.data.categories) {
             const category = await db.category.findOne({
                 where: {name: item},
                 include: [db.user]
@@ -56,6 +58,8 @@ const deleteCategories = async (req: Request, res: Response) : Promise<void> => 
     }
     
 }
+
+
 
 module.exports = {
     all,
