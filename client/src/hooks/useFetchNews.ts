@@ -19,7 +19,6 @@ const useFetchNews = (data: CurrentCategoryProps) : [NewsData[], (data :CurrentC
                 console.log("trying to fetch all now")
                 const newsArray = await NewsModel.all()
                 await setNews(newsArray.response.articles)
-                console.log(newsArray)
             } catch (error){
                 console.log(error)
             }
@@ -28,7 +27,6 @@ const useFetchNews = (data: CurrentCategoryProps) : [NewsData[], (data :CurrentC
                 console.log("fetching by user now")
                 const newsArray = await NewsModel.allByUser(fetchData.userCategories)
                 await setNews(newsArray.response.articles)
-                console.log("response inside hook", newsArray)
             } catch(error) {
                 console.log(error)
             }
@@ -44,7 +42,6 @@ const useFetchNews = (data: CurrentCategoryProps) : [NewsData[], (data :CurrentC
     }
 
     useEffect(() => {
-        console.log('calling useeffect in hook')
             fetchNews(data)
     },  [])
 

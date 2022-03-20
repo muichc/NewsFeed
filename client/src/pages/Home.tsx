@@ -46,7 +46,7 @@ const Home = () => {
     }, [categoryArray])
 
     return (
-        <div>
+        <div className='home-div'>
             <Header />
             <hr className='header-divide-line'></hr>
             <NewsFeed {...categoryProp} />

@@ -1,5 +1,6 @@
 import React from 'react'
 import { NewsData } from '../global/types'
+import { convertDate } from '../util/helper'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const News = (newsArticle: NewsData) => {
+    const formattedDate = convertDate(newsArticle.publishedAt)
 
     return (
         <Card sx={{ maxWidth: 350 }}>
@@ -18,15 +20,21 @@ const News = (newsArticle: NewsData) => {
                 alt=""
             />
             <CardContent>
+                <Typography variant="overline" color="red" component="p">
+                    {newsArticle.source.name} 
+                </Typography>
+                <Typography variant="overline">
+                    {formattedDate}
+                </Typography>
                 <Typography gutterBottom variant="h5" component="div">
                     {newsArticle.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" >
                     {newsArticle.description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" href={`${newsArticle.url}`} target="_blank" rel="noopener noreferrer" > See full article </Button>
+                <Button size="small" href={`${newsArticle.url}`} target="_blank" rel="noopener noreferrer" sx={{ color: 'text.primary', fontWeight: 'bold'}} > See full article </Button>
             </CardActions>
         </Card>
     )
