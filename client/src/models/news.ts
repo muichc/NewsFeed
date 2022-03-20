@@ -3,8 +3,6 @@ const URL : string = process.env.REACT_APP_SERVER_API_URL || process.env.SERVER_
 
 class NewsModel {
     static all = () => {
-        console.log("entering fetch all")
-        console.log(process.env.SERVER_API_URL)
         return fetch(`${URL}/news`, {
             headers: {
                 "Content-Type": "application/json"
