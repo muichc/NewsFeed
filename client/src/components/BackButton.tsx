@@ -7,7 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 const BackButton = () => {
     const navigate = useNavigate()
     return (
-        <IconButton onClick={() => navigate(-1) } className='back-button'>
+        <IconButton onClick={() => navigate(-1) } aria-label="Navigate back" className='back-button'>
             <ArrowBackIcon />
         </IconButton>
     )

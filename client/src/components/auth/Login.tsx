@@ -45,7 +45,7 @@ const Login = () => {
                     <>
                         <TextField
                             required
-                            id="email"
+                            className="mail"
                             label="Email"
                             type="text"
                             variant="standard"
@@ -57,7 +57,6 @@ const Login = () => {
                     <>
                         <TextField
                             required
-                            id="password-input"
                             label="Password"
                             type="password"
                             variant="standard"

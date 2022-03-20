@@ -12,9 +12,9 @@ const register = async (req : Request, res : Response) : Promise<void> => {
             }
             })
         if (created) {
-        res.status(200).json({ status: 200, message: "User is successfully registered", user: req.body.email})
+            res.status(200).json({ status: 200, message: "User is successfully registered", user: req.body.email})
         } else {
-        res.status(400).json({ message: 'This email was already registered or something else went wrong'})
+            res.status(400).json({ message: 'This email was already registered or something else went wrong'})
         }
     } catch (error) {
         console.log(error)
@@ -28,7 +28,6 @@ const login = async ( req : Request, res : Response ) : Promise<void> => {
             where: {email: req.body.email},
             include: [db.category]
         })
-        console.log("logging in")
         if (!user){
             res.status(400).json({ message: "User does not exist"})
         } else {
@@ -61,7 +60,7 @@ const changePassword = async ( req : Request, res : Response ) : Promise<void> =
                 if (updated) {
                     res.status(200).json({ status: 200, message: "Success, user password changed", user: req.body.email})
                 } else {
-                    res.status(500) .json({ status: 500, message: "Something went wrong server side", user: req.body.email})
+                    throw 'password did not update successfully'
                 }
             } else {
                 res.status(400).json({message: "Password does not match", user: req.body.email})

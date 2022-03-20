@@ -32,13 +32,16 @@ const CategorySelection = ()=> {
     const handleSave = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         const response = await CategoryModel.saveCategories({categories: selectedCategories, user})
+        if (response.status !== 200) {
+            setError('Something went wrong with saving categories')
+        }
         setCategories(selectedCategories)
-        navigate('/auth')
+        navigate('/')
     }
 
     const handleSkip = async(event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        navigate('/auth')
+        navigate('/')
     }
 
     useEffect(() => {
@@ -60,7 +63,7 @@ const CategorySelection = ()=> {
                     
                 : <CircularProgress />
                 }
-                <Button onClick={handleSave} variant="outlined" className='button'>Save categories</Button>
+                <Button onClick={handleSave} variant="outlined" className='button'>Save</Button>
                 <Button onClick={handleSkip} variant="outlined" className='button'>Skip</Button>
             </Stack>
             

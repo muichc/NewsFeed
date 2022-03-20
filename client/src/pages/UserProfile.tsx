@@ -9,12 +9,31 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const sectionStyle = {
-    fontSize: '20px'
+
+const processDeleted = (userCategories: string[], selectedCategories:string[]) => {
+    const deletedCategories : string[] = []
+    for (let category of userCategories) {
+        const name : string = category.toLowerCase()
+        if (!(selectedCategories.includes(name))) {
+            deletedCategories.push(name)
+        }
+    }
+    return deletedCategories
 }
 
+const processAdded = (userCategories: string[], selectedCategories:string[]) => {
+    const addCategories : string[] = []
+    for (let category of selectedCategories) {
+        const name : string = category.toLowerCase()
+        if (!(userCategories.includes(name))) {
+            addCategories.push(name)
+        }
+    }
+    return addCategories
+}
+
+
 const UserProfile = () => {
-    
     const userEmail = useRecoilValue(userState)
     const userCategories = useRecoilValue(userCategoriesState)
     const setUserCategories = useSetRecoilState(userCategoriesState)
@@ -25,28 +44,6 @@ const UserProfile = () => {
 
     const handleClick = () => {
         navigate('/changepw')
-    }
-
-    const processDeleted = (userCategories: string[], selectedCategories:string[]) => {
-        const deletedCategories : string[] = []
-        for (let category of userCategories) {
-            const name : string = category.toLowerCase()
-            if (!(selectedCategories.includes(name))) {
-                deletedCategories.push(name)
-            }
-        }
-        return deletedCategories
-    }
-
-    const processAdded = (userCategories: string[], selectedCategories:string[]) => {
-        const addCategories : string[] = []
-        for (let category of selectedCategories) {
-            const name : string = category.toLowerCase()
-            if (!(userCategories.includes(name))) {
-                addCategories.push(name)
-            }
-        }
-        return addCategories
     }
 
     const handleSave = async (event: React.MouseEvent<HTMLButtonElement>) => {

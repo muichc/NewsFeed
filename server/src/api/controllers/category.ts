@@ -26,7 +26,6 @@ const save = async (req: Request, res: Response) : Promise<void> => {
                 include: [db.user]
             })
             await user.addCategory(category)
-            console.log(category, "associated")
         }
         res.status(200).json({status: 200, message: "Success, the categories have been saved"})
     } catch(error) {
@@ -49,7 +48,6 @@ const deleteCategories = async (req: Request, res: Response) : Promise<void> => 
                 include: [db.user]
             })
             await user.removeCategory(category)
-            console.log("the category ", item, " is successfully unassociated from user")
         }
         res.status(200).json({status: 200, message: 'Success, the categories have been unassociated from user'})
     } catch (error) {

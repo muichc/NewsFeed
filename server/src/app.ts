@@ -18,6 +18,7 @@ app.use('/news', routes.news)
 app.use ('/auth', routes.auth)
 app.use('/category', routes.category)
 
+// Fallback
 app.get('/*', (req, res) => {
     res.send('server')
 });

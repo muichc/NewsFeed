@@ -1,5 +1,3 @@
-import { CategoryData } from '../global/types'
-
 const URL : string = process.env.REACT_APP_SERVER_API_URL || process.env.SERVER_API_URL || 'http://localhost:8000'
 
 
@@ -15,7 +13,6 @@ class CategoryModel {
             )
     }
     static saveCategories = (data: {categories: string[], user : string}) => {
-        console.log("requesting server to save categories now...")
         return fetch(`${URL}/category/save`, {
             method: 'POST',
             headers: {

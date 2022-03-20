@@ -10,9 +10,8 @@ import Typography from '@mui/material/Typography';
 
 const News = (newsArticle: NewsData) => {
     const formattedDate = convertDate(newsArticle.publishedAt)
-
     return (
-        <Card sx={{ maxWidth: 350 }}>
+        <Card sx={{ maxWidth: 350 }} aria-label="Newspaper article">
             <CardMedia
                 component="img"
                 height="200"
@@ -20,10 +19,10 @@ const News = (newsArticle: NewsData) => {
                 alt=""
             />
             <CardContent>
-                <Typography variant="overline" color="red" component="p">
+                <Typography variant="overline" color="text.primary" component="p" aria-label='sourced by'>
                     {newsArticle.source.name} 
                 </Typography>
-                <Typography variant="overline">
+                <Typography variant="overline" aria-label='date'>
                     {formattedDate}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div">

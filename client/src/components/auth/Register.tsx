@@ -38,7 +38,7 @@ const Register = () => {
                     <>
                         <TextField
                             required
-                            id="email"
+                            className="email"
                             label="Email"
                             type="text"
                             variant="standard"
@@ -50,7 +50,6 @@ const Register = () => {
                     <>
                         <TextField
                             required
-                            id="password-input"
                             label="Password"
                             type="password"
                             variant="standard"

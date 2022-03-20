@@ -6,12 +6,16 @@ const db = require('../../../models/index')
 
 const show = async (req: Request, res: Response) : Promise<void> => {
     try {
-        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
+        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY5 || ''};
         let url : string = process.env.NEWS_API_URL_TOP || 'https://newsapi.org/v2/top-headlines?';
         const response = await fetch(`${url}country=us`, {
             headers: requestHeaders
         })
         const parsedResponse = await response.json()
+        if (parsedResponse.status !== 'ok') {
+            console.log(parsedResponse)
+            throw `error fetching from API!`
+        }
         res.status(200).json({response: parsedResponse}) 
     } catch (error) {
         console.log(error)
@@ -22,12 +26,16 @@ const show = async (req: Request, res: Response) : Promise<void> => {
 
 const showByCategory = async (req: Request, res: Response) : Promise<void> => {
     try {
-        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
+        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY5 || ''};
         let url: string = process.env.NEWS_API_URL_TOP || 'https://newsapi.org/v2/top-headlines?';
         const response = await fetch(`${url}country=us&category=${req.body.category}`, {
             headers: requestHeaders
         })
         const parsedResponse = await response.json()
+        if (parsedResponse.status !== 'ok') {
+            console.log(parsedResponse)
+            throw `error fetching from API!`
+        }
         res.status(200).json({response: parsedResponse})
     } catch (error) {
         console.log(error)
@@ -67,12 +75,16 @@ const getQueries = (userCategories: string[]) => {
 }
 
 const fetchNewsByCategories = async (query: string, url: string) => {
-    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
+    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY5 || ''};
     try {
         const response = await fetch(`${url}country=us${query}`, {
             headers: requestHeaders
         })
-        const parsedResponse = response.json()
+        const parsedResponse = await response.json()
+        if (parsedResponse.status !== 'ok') {
+            console.log(parsedResponse)
+            throw `error fetching from API!`
+        }
         return parsedResponse
     } catch (error) {
         console.log(error)
@@ -81,7 +93,7 @@ const fetchNewsByCategories = async (query: string, url: string) => {
 }
 
 const fetchNewsByCountry = async (results: any, query: string[], url:string) => {
-    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
+    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY5 || ''};
     try {
         for (let i of query) {
             const cat = await db.category.findOne({ where: {name: i} , attributes:['abbreviation']})
@@ -90,6 +102,10 @@ const fetchNewsByCountry = async (results: any, query: string[], url:string) => 
             })
             
             const parsedCountryResponse = await countryResponse.json()
+            if (parsedCountryResponse.status !== 'ok') {
+                console.log(parsedCountryResponse)
+                throw `error fetching from API!`
+            }
             if (parsedCountryResponse.totalResults > 0) {
                 results.totalResults += parsedCountryResponse.totalResults
                 results.articles.push.apply(parsedCountryResponse.articles)

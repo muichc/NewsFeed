@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { userState } from '../recoil/atoms'
 import { AuthModel } from '../models/auth'
@@ -11,7 +11,6 @@ import TextField from '@mui/material/TextField'
 
 
 const ChangePassword = () => {
-    
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [message, setMessage] = useState('')
@@ -27,12 +26,10 @@ const ChangePassword = () => {
         }
     }
 
-
     return (
         <Box>
             <Header />
             <hr className='header-divide-line'></hr>
-            {message}
             <BackButton />
             <form onSubmit={handleSubmit} className='form' >
                 <Stack spacing={2}>
@@ -62,6 +59,7 @@ const ChangePassword = () => {
                         />
                     </>
                     <Button type='submit' variant="outlined"> Save password </Button>
+                    {message}
                 </Stack>
             </form>
         
