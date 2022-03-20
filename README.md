@@ -78,26 +78,19 @@ Backend service is done in Node.js/Express/Sequelize/Typescript with API endpoin
 
 ### User Flow
 
-User Flow:
-    - ![User flow diagram depicting the routes to all the pages](https://drive.google.com/file/d/1-y_1ZTCdXgsNHu240znJ57iMjidrp6nA/view?usp=sharing)
+[User Flow](https://drive.google.com/file/d/1-y_1ZTCdXgsNHu240znJ57iMjidrp6nA/view?usp=sharing)
 
-Landing Page:
-    - ![Landing Page with rows of news articles](https://drive.google.com/file/d/1FEv1jEGvhzTZYH4AtK9FvWaVno0XsOtP/view?usp=sharing)
+[Landing Page](https://drive.google.com/file/d/1FEv1jEGvhzTZYH4AtK9FvWaVno0XsOtP/view?usp=sharing)
 
-Authentication Page:
-    - ![Authentication Page with login and register forms](https://drive.google.com/file/d/1PCYwZtDi8n1gaW_GdEuqMpyfkCrZB1h-/view?usp=sharing)
+[Authentication Page](https://drive.google.com/file/d/1PCYwZtDi8n1gaW_GdEuqMpyfkCrZB1h-/view?usp=sharing)
 
-Category Selection Page after registering
-    - ![Category Selection Page after registering with dropdown menus](https://drive.google.com/file/d/18axTdfwCrQP2vPzIdMt8H0IpPFdSdAEY/view?usp=sharing)
+[Category Selection Page after registering](https://drive.google.com/file/d/18axTdfwCrQP2vPzIdMt8H0IpPFdSdAEY/view?usp=sharing)
 
-Home Page with menu button to log out or navigate to profile
-    - ![Home Page with menu button to log out or navigate to profile](https://drive.google.com/file/d/10Fo2JnFfIUR44Pe9bMjVt157728xfOMv/view?usp=sharing)
+[Home Page with menu button to log out or navigate to profile](https://drive.google.com/file/d/10Fo2JnFfIUR44Pe9bMjVt157728xfOMv/view?usp=sharing)
 
-User Profile page
-    - ![User Profile page with account information and category selection](https://drive.google.com/file/d/15GucdATratu5-ntEEHOB8Bs0NbT-agE_/view?usp=sharing)
+[User Profile page](https://drive.google.com/file/d/15GucdATratu5-ntEEHOB8Bs0NbT-agE_/view?usp=sharing)
 
-Change Password page
-    - ![Chnage password page with a form](https://drive.google.com/file/d/1fE18B8TU9jimvKPJoFBZ-mtUTSFYCJMm/view?usp=sharing)
+[Change Password page](https://drive.google.com/file/d/1fE18B8TU9jimvKPJoFBZ-mtUTSFYCJMm/view?usp=sharing)
 
 ### Data Models & ERD
 Models include user and category, with userCategories as a joint table with a many to many relationship between user and categories.
