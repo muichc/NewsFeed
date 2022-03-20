@@ -14,25 +14,25 @@ class CategoryModel {
         }
             )
     }
-    static saveCategories = (categories: string[]) => {
+    static saveCategories = (data: {categories: string[], user : string}) => {
         console.log("requesting server to save categories now...")
         return fetch(`${URL}/category/save`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({categories, user:localStorage.getItem('user')})
+            body: JSON.stringify({data})
         }).then((response) => {
             return response.json()
         })
     }
-    static deleteCategories = (categories: string[]) => {
+    static deleteCategories = (data: {categories: string[], user : string}) => {
         return fetch(`${URL}/category/delete`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({categories, user:localStorage.getItem('user')})
+            body: JSON.stringify({data})
         }).then((response) => {
             return response.json()
         })

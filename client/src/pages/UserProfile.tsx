@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-import { userCategoriesState, allCategoriesState } from '../recoil/atoms'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { userState, userCategoriesState, allCategoriesState } from '../recoil/atoms'
 import { CategoryMenu } from '../components/categories/CategoryMenu'
 import { CategoryModel } from '../models/category'
 import { Header } from '../components/header/Header'
@@ -15,11 +15,12 @@ const sectionStyle = {
 
 const UserProfile = () => {
     
-    const userEmail = localStorage.getItem('user')
+    const userEmail = useRecoilValue(userState)
     const userCategories = useRecoilValue(userCategoriesState)
+    const setUserCategories = useSetRecoilState(userCategoriesState)
     const [selectedCategories, setSelectedCategories] = useState<string[]>(userCategories)
     const allCategories = useRecoilValue(allCategoriesState)
-    const [error, setError] = useState<string>('')
+    const [message, setMessage] = useState<string>('')
     const navigate = useNavigate()
 
     const handleClick = () => {
@@ -49,21 +50,26 @@ const UserProfile = () => {
     }
 
     const handleSave = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault()    
+        event.preventDefault() 
         const deletedCategories : string[] = processDeleted(userCategories, selectedCategories)
         const addCategories : string[] = processAdded(userCategories, selectedCategories)
         if (deletedCategories.length > 0) {
-            const deleteResponse = await CategoryModel.deleteCategories(deletedCategories)
+            const deleteResponse = await CategoryModel.deleteCategories({categories: deletedCategories, user: userEmail})
             if (deleteResponse.status !== 200) {
-                setError("Something went wrong, categories could not be deleted, please try again later")
+                setMessage("Something went wrong, categories could not be deleted, please try again later")
+            } else {
+                setMessage("Your preferences have been saved!")
             }
         }
         if (addCategories.length > 0) {
-            const addResponse = await CategoryModel.saveCategories(addCategories)
+            const addResponse = await CategoryModel.saveCategories({categories: addCategories, user: userEmail})
             if (addResponse.status !== 200) {
-                setError("Something went wrong, categories could not be added, please try again later")
+                setMessage("Something went wrong, categories could not be added, please try again later")
+            } else {
+                setMessage("Your preferences have been saved!")
             }
         }
+        setUserCategories(selectedCategories)
         navigate('/profile')
     }
 
@@ -80,7 +86,7 @@ const UserProfile = () => {
             <Stack spacing={2} className='category-stack'>
                 <Typography variant="overline" className='section-heading' sx={{ fontSize:'1.5rem' }}> You have selected the following categories you are interested in: </Typography>
                 <Typography variant="caption" sx={{ fontSize: '1rem'}}>Please select or deselect categories through the dropdown menu to see the news that you want!</Typography>
-                { error? <Typography variant="subtitle1">{error}</Typography> : ''}
+                { message? <Typography variant="subtitle1">{message}</Typography> : ''}
                 <CategoryMenu {...{ type: 'categories', categories: allCategories, selected: selectedCategories, setCategories: setSelectedCategories}}/>
                 <CategoryMenu {...{ type: 'country', categories: allCategories, selected: selectedCategories, setCategories: setSelectedCategories}}/>
                 <Button variant="outlined" onClick={handleSave} className='button'>Save</Button>

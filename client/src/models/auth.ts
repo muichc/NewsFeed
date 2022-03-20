@@ -15,7 +15,6 @@ class AuthModel {
         }).then((response) => response.json())
     }
     static login = (data: UserData) => {
-        console.log("client side method")
         return fetch(`${URL}/auth/login`, {
             method: "POST",
             headers: {
@@ -26,9 +25,6 @@ class AuthModel {
             return response.json()})
     }
     static changePassword = (data: UserPasswordData) => {
-        console.log("client data", data)
-        const jsonData = JSON.stringify(data)
-        console.log("stringified data", jsonData)
         return fetch(`${URL}/auth/changepw`, {
             method: 'PUT',
             headers: {

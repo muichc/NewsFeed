@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate }from 'react-router-dom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { userState, userCategoriesState } from '../recoil/atoms'
 import { CategoryModel } from '../models/category'
 import { CategoryData } from '../global/types'
 import { Header } from '../components/header/Header'
@@ -10,7 +12,8 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
 const CategorySelection = ()=> {
-
+    const user = useRecoilValue(userState)
+    const setCategories = useSetRecoilState(userCategoriesState)
     const [categoryArray, setCategoryArray] = useState<CategoryData[]>([])
     const [error, setError] = useState('')
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -19,7 +22,6 @@ const CategorySelection = ()=> {
 
     const fetchCategories = async () => {
         const response = await CategoryModel.all()
-        console.log(response)
         if (response.status === 200) {
             setCategoryArray(response.categories)
         } else {
@@ -29,8 +31,8 @@ const CategorySelection = ()=> {
 
     const handleSave = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        const response = await CategoryModel.saveCategories(selectedCategories)
-        console.log(response)
+        const response = await CategoryModel.saveCategories({categories: selectedCategories, user})
+        setCategories(selectedCategories)
         navigate('/auth')
     }
 

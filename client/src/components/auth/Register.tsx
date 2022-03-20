@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate }from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { userState } from '../../recoil/atoms'
 import { AuthModel } from '../../models/auth'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -8,6 +10,7 @@ import Typography from '@mui/material/Typography'
 
 
 const Register = () => {
+    const setUser = useSetRecoilState(userState)
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [error, setError] = useState("")
@@ -15,9 +18,9 @@ const Register = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         const response = await AuthModel.register({email:userEmail, password:userPassword})
         if (response.status === 200) {
+            setUser(response.user)
             navigate("/category")
         } else {
             setError("Something went wrong, please try again");
