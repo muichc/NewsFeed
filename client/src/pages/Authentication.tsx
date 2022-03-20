@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 const Authentication = () => {
 
     return (
-        <div>
+        <div className='page'>
             <Title />
             <hr className='header-divide-line'></hr>
             <BackButton />

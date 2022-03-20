@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
+import { userState } from '../recoil/atoms'
 import { AuthModel } from '../models/auth'
 import { Header } from '../components/header/Header'
 import { BackButton } from '../components/BackButton'
@@ -13,12 +15,11 @@ const ChangePassword = () => {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [message, setMessage] = useState('')
-    const email : string = localStorage.getItem('user') || ''
+    const email : string = useRecoilValue(userState)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const response = await AuthModel.changePassword({email, password:oldPassword, newPassword})
-        console.log(response)
         if (response.status === 200) {
             setMessage('Success, password successfully changed')
         } else {

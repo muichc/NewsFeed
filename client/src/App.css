@@ -1,17 +1,43 @@
+html, body {
+  width : 100%;
+}
+
 .App {
   text-align: center;
   display:flex;
   justify-content:center;
   align-items:center;
+  width: 100%;
+}
+
+.home-div {
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  align-items:center;
+  flex-direction:column;
+  width: 100%;
 }
 
 .header {
   display:flex;
   justify-content:center;
+  width: 100%;
 }
-
+@media only screen and(min-width:480px) {
+  .title{
+    margin-top: 0;
+  }
+}
 .title {
   padding: 0 50px 0 50px;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .title-link:link, :visited, :active, :hover {
@@ -31,7 +57,7 @@
 }
 
 .header-divide-line {
-  width: 65%;
+  width: 75%;
   margin-bottom:50px;
 }
 
@@ -50,6 +76,10 @@
   margin: 50px;
   display:flex;
   align-items:center;
+}
+
+.button{
+  color: black!;
 }
 
 @media only screen and (min-width: 481px) {
@@ -71,4 +101,34 @@
 
 .back-button{
   right:35%;
+}
+
+.auth-button{
+  position:absolute;
+  right: 60%;
+  top: 1.25rem;
+}
+
+@media only screen and (min-width: 481px) {
+  .auth-button{
+    right: 78%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .auth-button{
+    right: 85%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .auth-button{
+    right: 82%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .auth-button{
+    right: 90%;
+  }
 }

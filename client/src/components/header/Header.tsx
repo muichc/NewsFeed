@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
+import Button from '@mui/material/Button'
 
 
 const Header = () => {
@@ -94,6 +95,7 @@ const Header = () => {
                 >
                     <MenuItem onClick={handleAuth}>Login/Register</MenuItem>
                 </Menu>
+                <Button onClick={handleAuth} variant="text" sx={{ color: 'text.primary', maxHeight: '30px'}} className='auth-button'>Login/Register</Button>
             </div>
         )
     }
