@@ -1,8 +1,10 @@
-const router = require('express').Router()
-const controller = require('../controllers')
+import express from 'express'
+import { controllers }from '../controllers/index'
 
-router.get('/', controller.news.show)
-router.get('/byCategory', controller.news.showByCategory)
-router.post('/byUser', controller.news.showByUser)
+const newsRouter = express.Router()
 
-export = router
+newsRouter.get('/', controllers.news.show)
+newsRouter.get('/byCategory', controllers.news.showByCategory)
+newsRouter.post('/byUser', controllers.news.showByUser)
+
+export { newsRouter }

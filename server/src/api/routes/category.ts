@@ -1,12 +1,13 @@
-const router = require('express').Router()
-const controller = require('../controllers')
-const methodOverride=require('method-override');
+import express from 'express'
+import { controllers }from '../controllers/index'
+import methodOverride from 'method-override'
+const categoryRouter = express.Router()
 
-router.use(methodOverride('_method'))
+categoryRouter.use(methodOverride('_method'))
 
-router.get('/all', controller.category.all)
-router.post('/save', controller.category.save)
-router.delete('/delete', controller.category.deleteCategories)
+categoryRouter.get('/all', controllers.category.all)
+categoryRouter.post('/save', controllers.category.save)
+categoryRouter.delete('/delete', controllers.category.deleteCategories)
 
 
-export = router
+export { categoryRouter }

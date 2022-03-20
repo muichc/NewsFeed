@@ -61,7 +61,7 @@ const deleteCategories = async (req: Request, res: Response) : Promise<void> => 
 
 
 
-module.exports = {
+export const category = {
     all,
     save,
     deleteCategories

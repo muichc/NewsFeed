@@ -1,11 +1,12 @@
 import type {Request, Response} from 'express';
 import fetch from 'node-fetch';
-const db = require('../../../models')
+
+const db = require('../../../models/index')
 
 
 const show = async (req: Request, res: Response) : Promise<void> => {
     try {
-        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY3 || ''};
+        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
         let url : string = process.env.NEWS_API_URL_TOP || 'https://newsapi.org/v2/top-headlines?';
         const response = await fetch(`${url}country=us`, {
             headers: requestHeaders
@@ -21,7 +22,7 @@ const show = async (req: Request, res: Response) : Promise<void> => {
 
 const showByCategory = async (req: Request, res: Response) : Promise<void> => {
     try {
-        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY3 || ''};
+        const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
         let url: string = process.env.NEWS_API_URL_TOP || 'https://newsapi.org/v2/top-headlines?';
         const response = await fetch(`${url}country=us&category=${req.body.category}`, {
             headers: requestHeaders
@@ -66,7 +67,7 @@ const getQueries = (userCategories: string[]) => {
 }
 
 const fetchNewsByCategories = async (query: string, url: string) => {
-    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY3 || ''};
+    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
     try {
         const response = await fetch(`${url}country=us${query}`, {
             headers: requestHeaders
@@ -80,7 +81,7 @@ const fetchNewsByCategories = async (query: string, url: string) => {
 }
 
 const fetchNewsByCountry = async (results: any, query: string[], url:string) => {
-    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY3 || ''};
+    const requestHeaders : HeadersInit = {'X-Api-Key' : process.env.NEWS_API_KEY4 || ''};
     try {
         for (let i of query) {
             const cat = await db.category.findOne({ where: {name: i} , attributes:['abbreviation']})
@@ -101,7 +102,7 @@ const fetchNewsByCountry = async (results: any, query: string[], url:string) => 
     }
 }
 
-module.exports = {
+export const news = {
     show,
     showByCategory, 
     showByUser

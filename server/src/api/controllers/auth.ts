@@ -73,6 +73,6 @@ const changePassword = async ( req : Request, res : Response ) : Promise<void> =
     }
 }
 
-module.exports = {
+export const auth = {
     login, register, changePassword
 }

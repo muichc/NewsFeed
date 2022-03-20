@@ -1,8 +1,10 @@
-const router = require('express').Router()
-const controller = require('../controllers')
+import express from 'express'
+import { controllers }from '../controllers/index'
 
-router.post('/register', controller.auth.register)
-router.post('/login', controller.auth.login)
-router.put('/changepw', controller.auth.changePassword)
+const authRouter = express.Router()
 
-export = router
+authRouter.post('/register', controllers.auth.register)
+authRouter.post('/login', controllers.auth.login)
+authRouter.put('/changepw', controllers.auth.changePassword)
+
+export { authRouter } 

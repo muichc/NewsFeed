@@ -1,13 +1,16 @@
-const URL : string = process.env.SERVER_API_URL || 'http://localhost:8000'
+const URL : string = process.env.REACT_APP_SERVER_API_URL || process.env.SERVER_API_URL || 'http://localhost:8000'
 
 
 class NewsModel {
     static all = () => {
+        console.log("entering fetch all")
+        console.log(process.env.SERVER_API_URL)
         return fetch(`${URL}/news`, {
             headers: {
                 "Content-Type": "application/json"
             },
         }).then((response) => {
+            console.log(response)
             return response.json()
         })
     } 

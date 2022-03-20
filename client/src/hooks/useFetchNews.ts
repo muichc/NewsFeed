@@ -18,6 +18,7 @@ const useFetchNews = (data: CurrentCategoryProps) : [NewsData[], (data :CurrentC
             try {
                 console.log("trying to fetch all now")
                 const newsArray = await NewsModel.all()
+                console.log(newsArray)
                 await setNews(newsArray.response.articles)
             } catch (error){
                 console.log(error)
